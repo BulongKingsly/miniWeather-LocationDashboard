@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Saved Weather Searches</h1>
+  <h3 class="text-gray-700 mt-2">Total Saved Cities: <b>{{ totalEntries }}</b></h3>
+
+
+  <div *ngIf="weatherList.length === 0">
+    <p>No cities saved yet. Go back and search for one!</p>
+  </div>
+
+  <div *ngFor="let weather of weatherList" class="card">
+    <div class="card-content">
+      <img [src]="weather.icon" alt="icon" class="weather-icon" />
+      <div class="weather-info">
+        <h3>{{ weather.name }}, {{ weather.country }}</h3>
+        <p>{{ weather.temperature }} °C - {{ weather.condition }}</p>
+        <small>Searched: {{ weather.searchedAt | date:'short' }}</small>
+      </div>
+      <button (click)="deleteItem(weather.id)" class="delete-btn">DELETE</button>
+    </div>
+  </div>
+</div>

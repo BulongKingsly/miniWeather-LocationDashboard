@@ -1,0 +1,37 @@
+<div class="container">
+  <h1 class="title">Climate Weather Search</h1>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="city"
+      placeholder="Enter city name..."
+      class="search-input"
+    />
+    <button (click)="getWeather()" class="search-btn">Search</button>
+  </div>
+
+  <div *ngIf="weatherData" class="weather-card">
+    <img
+      [src]="weatherData.current.weather_icons[0]"
+      alt="Weather icon"
+      class="weather-icon"
+    />
+
+    <h2 class="city-name">{{ weatherData.location.name }}</h2>
+    <p class="temp"><b>Temperature:</b> {{ weatherData.current.temperature }} °C</p>
+    <p class="condition"><b>Condition:</b> {{ weatherData.current.weather_descriptions[0] }}</p>
+
+    <button
+      (click)="saveWeather()"
+      class="save-btn"
+      [disabled]="isSaved"
+    >
+      {{ isSaved ? 'Saved' : 'Save City' }}
+    </button>
+  </div>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+</div>
